@@ -88,7 +88,7 @@ public class ALL implements BeanNameAware, BeanFactoryAware, ApplicationContextA
     //4
     @Override
     public void start() {
-        System.out.println("ALL build");
+        System.out.println("ALL auto start");
     }
 
     @Override

@@ -1,10 +1,7 @@
 package com.chenxiaojie.spring.dependencies;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
@@ -22,7 +19,7 @@ import java.util.Properties;
  * Created by chenxiaojie on 2017/1/17.
  */
 @Repository
-public class I extends PropertyPlaceholderConfigurer implements BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean, ApplicationListener<ApplicationEvent> {
+public class I extends PropertyPlaceholderConfigurer implements BeanFactoryAware, BeanNameAware, ApplicationContextAware, InitializingBean, DisposableBean, ApplicationListener<ApplicationEvent> {
 
     @Autowired
     private A a;
@@ -42,6 +39,12 @@ public class I extends PropertyPlaceholderConfigurer implements BeanFactoryAware
     }
 
     @Override
+    public void setBeanName(String beanName) {
+        super.setBeanName(beanName);
+        System.out.println("I setBeanName");
+    }
+
+    @Override
     protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
         System.out.println("I:props.size() = " + props.size());
         super.processProperties(beanFactoryToProcess, props);
@@ -55,7 +58,7 @@ public class I extends PropertyPlaceholderConfigurer implements BeanFactoryAware
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("I applicationContext");
+        System.out.println("I setApplicationContext");
         this.applicationContext = applicationContext;
     }
 

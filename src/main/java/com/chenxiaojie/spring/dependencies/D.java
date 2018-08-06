@@ -1,10 +1,7 @@
 package com.chenxiaojie.spring.dependencies;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -22,7 +19,7 @@ import javax.annotation.PreDestroy;
  * Created by chenxiaojie on 2016/11/26.
  */
 @Service
-public class D implements BeanPostProcessor, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean, Ordered {
+public class D implements BeanPostProcessor, BeanFactoryAware, BeanNameAware, ApplicationContextAware, InitializingBean, DisposableBean, Ordered {
 
     @Autowired
     private A a;
@@ -42,8 +39,13 @@ public class D implements BeanPostProcessor, BeanFactoryAware, ApplicationContex
     }
 
     @Override
+    public void setBeanName(String beanName) {
+        System.out.println("D setBeanName");
+    }
+
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("D applicationContext");
+        System.out.println("D setApplicationContext");
         this.applicationContext = applicationContext;
 
         ConfigurableApplicationContext configurableApplicationContext = (ConfigurableApplicationContext) this.applicationContext;

@@ -90,7 +90,7 @@ public class K implements BeanNameAware, ApplicationContextAware, InitializingBe
     //4
     @Override
     public void start() {
-        System.out.println("K build");
+        System.out.println("K start");
     }
 
     @Override

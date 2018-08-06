@@ -25,7 +25,7 @@ public class Bootstrap implements ApplicationContextAware{
     private TwoInterface two;
 
     @Test
-    public void test() {
+    public void test() throws NoSuchMethodException {
         one.one("-test");
         ((TwoInterface) one).two("-test");
 

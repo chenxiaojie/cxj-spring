@@ -6,5 +6,5 @@ package com.chenxiaojie.spring.aop.introduction;
 public interface OneInterface {
     void one(String value);
 
-    void same(String value);
+    void same(String value) throws NoSuchMethodException;
 }
