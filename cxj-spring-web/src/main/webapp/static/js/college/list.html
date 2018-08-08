@@ -1,0 +1,38 @@
+<div ng-controller="college.list.controller">
+    <div class="panel panel-default" style="width: 98%;margin: 0 auto;">
+        <div class="panel-heading">
+            大学列表
+        </div>
+        <div class="panel-body">
+            <div>
+                <button style="float: right" type="button" class="btn btn-info" ng-click="showAddDialog()">新增</button>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>大学名称</th>
+                    <th>大学地址</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="college in colleges">
+                    <td>{{ college.id }}</td>
+                    <td>{{ college.collegeName }}</td>
+                    <td>{{ college.collegeAddress }}</td>
+                    <td>
+                        <a class="btn btn-info btn-xs" href="#/college/detail/{{ college.id }}">详情</a>
+                        <a class="btn btn-warning btn-xs" href="#/college/edit/{{ college.id }}">修改</a>
+                        <a class="btn btn-danger btn-xs" ng-click="showDeleteDialog(college.id)">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ul uib-pagination boundary-links="true" total-items="totalCount" ng-model="pageIndex" max-size="8"
+                rotate="true"
+                boundary-link-numbers="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></ul>
+        </div>
+    </div>
+</div>

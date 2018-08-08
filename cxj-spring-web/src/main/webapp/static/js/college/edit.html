@@ -1,0 +1,39 @@
+<div ng-controller="college.edit.controller">
+    <div class="panel panel-default" style="width: 98%;margin: 0 auto;">
+        <div class="panel-heading">
+            编辑
+        </div>
+        <div class="panel-body">
+            <form name="collegeEditForm" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="collegeName" class="col-sm-2 control-label">大学ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="id" class="form-control" placeholder="大学ID"
+                               ng-model="college.id" readonly required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="collegeName" class="col-sm-2 control-label">大学名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="collegeName" class="form-control" placeholder="大学名称"
+                               ng-model="college.collegeName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="collegeAddress" class="col-sm-2 control-label">大学地址</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="collegeAddress" class="form-control" placeholder="大学地址"
+                               ng-model="college.collegeAddress" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button class="btn btn-primary" type="button" ng-click="edit()"
+                                ng-disabled="collegeEditForm.$invalid">保存
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

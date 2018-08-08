@@ -1,0 +1,35 @@
+<div ng-controller="college.detail.controller">
+    <div class="panel panel-default" style="width: 98%;margin: 0 auto;">
+        <div class="panel-heading">
+            详情
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12" style="margin-bottom: 30px;">
+                <a style="float: right" class="btn btn-info" href="#/college/edit/{{ college.id }}">编辑</a>
+            </div>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="collegeName" class="col-sm-2 control-label">大学ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="id" class="form-control" placeholder="大学ID"
+                               ng-model="college.id" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="collegeName" class="col-sm-2 control-label">大学名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="collegeName" class="form-control" placeholder="大学名称"
+                               ng-model="college.collegeName" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="collegeAddress" class="col-sm-2 control-label">大学地址</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="collegeAddress" class="form-control" placeholder="大学地址"
+                               ng-model="college.collegeAddress" readonly>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
