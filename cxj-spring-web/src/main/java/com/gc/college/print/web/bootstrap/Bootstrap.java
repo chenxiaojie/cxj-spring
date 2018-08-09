@@ -6,9 +6,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
+import java.util.EnumSet;
 
 /**
  * Created by chenxiaojie on 18/8/06.
@@ -18,10 +17,13 @@ public class Bootstrap implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext context) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(SpringConfiguration.class);
+        ctx.register(SpringMVCConfig.class);
 
-        context.addFilter("characterEncodingFilter", new CharacterEncodingFilter("UTF-8", true));
-        context.addFilter("httpPutFormContentFilter", new HttpPutFormContentFilter());
+        FilterRegistration.Dynamic characterEncodingFilter = context.addFilter("characterEncodingFilter", new CharacterEncodingFilter("UTF-8", true));
+        characterEncodingFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD), true, "/*");
+
+        FilterRegistration.Dynamic httpPutFormContentFilter = context.addFilter("httpPutFormContentFilter", new HttpPutFormContentFilter());
+        httpPutFormContentFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD), true, "/*");
 
         ServletRegistration.Dynamic dispatcher = context.addServlet("dispatcher", new DispatcherServlet(ctx));
         dispatcher.addMapping("/");

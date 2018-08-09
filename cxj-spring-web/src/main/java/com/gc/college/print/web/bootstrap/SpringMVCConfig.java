@@ -1,16 +1,15 @@
 package com.gc.college.print.web.bootstrap;
 
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -21,20 +20,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
-import javax.sql.DataSource;
+import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Properties;
 
 /**
  * Created by chenxiaojie on 18/8/06.
  */
+@Slf4j
 @EnableWebMvc
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement(proxyTargetClass = true)
 @Configuration
 @ComponentScan("com.gc.college.print")
-public class SpringConfiguration implements WebMvcConfigurer, ApplicationContextAware {
-
-    private ApplicationContext applicationContext;
+public class SpringMVCConfig implements WebMvcConfigurer {
 
     @Bean
     public ViewResolver viewResolver() {
@@ -71,45 +70,48 @@ public class SpringConfiguration implements WebMvcConfigurer, ApplicationContext
         return multipartResolver;
     }
 
+    @Bean
+    public HttpMessageConverter httpMessageConverter() {
+        FastJsonHttpMessageConverter messageConverter = new FastJsonHttpMessageConverter();
+        messageConverter.setDefaultCharset(Charset.forName("UTF-8"));
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
+        List<MediaType> mediaTypes = Lists.newArrayListWithExpectedSize(1);
+        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);//设定json格式且编码为UTF-8
+        messageConverter.setSupportedMediaTypes(mediaTypes);
+        messageConverter.setFastJsonConfig(fastJsonConfig);
+//        MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+//        objectMapper.setTimeZone(TimeZone.getDefault());
+//        objectMapper.disable(MapperFeature.INFER_CREATOR_FROM_CONSTRUCTOR_PROPERTIES);
+//        messageConverter.setObjectMapper(objectMapper);
+        return messageConverter;
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(0, httpMessageConverter());
+    }
+
+    //    @Override
+//    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        boolean isAddJackson = false;
+//        for (int i = 0; i < converters.size(); i++) {
+//            if (converters.get(i) instanceof MappingJackson2HttpMessageConverter) {
+//                converters.set(i, httpMessageConverter());
+//                isAddJackson = true;
+//            }
+//        }
+//
+//        if (!isAddJackson) {
+//            converters.add(0, httpMessageConverter());
+//        }
+//    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
     }
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/GC_Print?useUnicode=true&amp;characterEncoding=UTF-8&amp;useAffectedRows=true");
-        dataSource.setUsername("root");
-        dataSource.setPassword("qwe888888");
-        return dataSource;
-    }
-
-    @Bean
-    public SqlSessionFactoryBean sqlSessionFactoryBean() {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(applicationContext.getBean(DataSource.class));
-        return sqlSessionFactoryBean;
-    }
-
-    @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setBasePackage("com.gc.college.print.dao.api");
-        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
-        return mapperScannerConfigurer;
-    }
-
-    @Bean
-    public DataSourceTransactionManager transactionManager() {
-        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-        dataSourceTransactionManager.setDataSource(applicationContext.getBean(DataSource.class));
-        return dataSourceTransactionManager;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
 }
