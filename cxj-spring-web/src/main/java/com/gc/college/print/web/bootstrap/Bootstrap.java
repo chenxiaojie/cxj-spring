@@ -16,6 +16,7 @@ public class Bootstrap implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext context) throws ServletException {
+
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(SpringMVCConfig.class);
 
