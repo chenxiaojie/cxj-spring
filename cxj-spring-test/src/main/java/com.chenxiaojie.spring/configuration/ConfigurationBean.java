@@ -1,5 +1,6 @@
 package com.chenxiaojie.spring.configuration;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -25,10 +26,11 @@ public class ConfigurationBean {
     }
 
     @Bean
-    public Boolean isSameBean() {
+    public Boolean isSameBean(@Qualifier("testEntity") TestEntity testEntity3) {
         TestEntity testEntity1 = this.testEntity();
         TestEntity testEntity2 = this.testEntity();
         System.out.println("ConfigurationBean1 testEntity1 == testEntity2 : " + (testEntity1 == testEntity2));
+        System.out.println("ConfigurationBean1 testEntity1 == testEntity3 : " + (testEntity1 == testEntity3));
         return testEntity1 == testEntity2;
     }
 
