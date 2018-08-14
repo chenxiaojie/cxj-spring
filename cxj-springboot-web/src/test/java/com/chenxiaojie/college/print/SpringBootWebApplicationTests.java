@@ -1,4 +1,4 @@
-package com.chenxiaojie.springboot;
+package com.chenxiaojie.college.print;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

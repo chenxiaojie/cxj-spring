@@ -1,4 +1,4 @@
-package com.chenxiaojie.springboot;
+package com.chenxiaojie.college.print;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

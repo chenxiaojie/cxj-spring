@@ -12,6 +12,7 @@
     <modules>
         <module>cxj-spring-web</module>
         <module>cxj-spring-test</module>
+        <module>cxj-springboot-web</module>
     </modules>
 
 </project>

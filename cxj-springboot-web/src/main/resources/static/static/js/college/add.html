@@ -1,0 +1,28 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">新增</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <form name="collegeAddForm" class="form-horizontal" role="form" novalidate>
+            <div class="form-group">
+                <label for="collegeName" class="col-sm-2 control-label">大学名称</label>
+                <div class="col-sm-10">
+                    <input type="text" id="collegeName" class="form-control" placeholder="大学名称"
+                           ng-model="$ctrl.collegeName" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="collegeAddress" class="col-sm-2 control-label">大学地址</label>
+                <div class="col-sm-10">
+                    <input type="text" id="collegeAddress" class="form-control" placeholder="大学地址"
+                           ng-model="$ctrl.collegeAddress" autocomplete="off" required>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.save()" ng-disabled="collegeAddForm.$invalid">保存
+        </button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">取消</button>
+    </div>
+</div>
