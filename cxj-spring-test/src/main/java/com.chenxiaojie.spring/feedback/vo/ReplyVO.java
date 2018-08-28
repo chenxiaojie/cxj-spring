@@ -3,6 +3,7 @@ package com.chenxiaojie.spring.feedback.vo;
 public class ReplyVO {
 
     private int replyId;
+    private int questionId;
     private String content;
 
     public ReplyVO() {

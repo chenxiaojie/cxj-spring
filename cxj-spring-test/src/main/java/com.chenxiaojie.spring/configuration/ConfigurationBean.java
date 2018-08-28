@@ -1,14 +1,21 @@
 package com.chenxiaojie.spring.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 @Configuration
-//@ComponentScan("com.chenxiaojie.spring.configuration.bootstrap")
-@Import(ComponentBean.class)
+@ComponentScan("com.chenxiaojie.spring.configuration")
+//@Import(ComponentBean.class)
 public class ConfigurationBean {
+
+    @Autowired
+    private ComponentBean componentBean;
+
+    @Autowired
+    private ConfigurationBean2 configurationBean2;
 
     @Bean
     public TestEntity testEntity() {
@@ -26,7 +33,7 @@ public class ConfigurationBean {
     }
 
     @Bean
-    public Boolean isSameBean(@Qualifier("testEntity") TestEntity testEntity3) {
+    public Boolean isSameBean1(@Qualifier("testEntity") TestEntity testEntity3) {
         TestEntity testEntity1 = this.testEntity();
         TestEntity testEntity2 = this.testEntity();
         System.out.println("ConfigurationBean1 testEntity1 == testEntity2 : " + (testEntity1 == testEntity2));
@@ -39,6 +46,30 @@ public class ConfigurationBean {
         TestEntity testEntity1 = this.testEntity1();
         TestEntity testEntity2 = this.testEntity2();
         System.out.println("ConfigurationBean2 testEntity1 == testEntity2 : " + (testEntity1 == testEntity2));
+        return testEntity1 == testEntity2;
+    }
+
+    @Bean
+    public Boolean isSameBean3() {
+        TestEntity testEntity1 = this.testEntity();
+        TestEntity testEntity2 = componentBean.testEntity();
+        System.out.println("ConfigurationBean3 testEntity1 == testEntity2 : " + (testEntity1 == testEntity2));
+        return testEntity1 == testEntity2;
+    }
+
+    @Bean
+    public Boolean isSameBean4() {
+        TestEntity testEntity1 = this.testEntity();
+        TestEntity testEntity2 = configurationBean2.testEntity();
+        System.out.println("ConfigurationBean4 testEntity1 == testEntity2 : " + (testEntity1 == testEntity2));
+        return testEntity1 == testEntity2;
+    }
+
+    @Bean
+    public Boolean isSameBean5() {
+        TestEntity testEntity1 = this.testEntity();
+        TestEntity testEntity2 = this.testEntity1();
+        System.out.println("ConfigurationBean4 testEntity1 == testEntity2 : " + (testEntity1 == testEntity2));
         return testEntity1 == testEntity2;
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ComponentBean {
 
-    @Bean("ComponentBeanTestEntity")
+    @Bean
     public TestEntity testEntity() {
         return new TestEntity();
     }

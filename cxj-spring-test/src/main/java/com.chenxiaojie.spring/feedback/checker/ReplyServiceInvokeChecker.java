@@ -14,8 +14,13 @@ public class ReplyServiceInvokeChecker extends AbstractCanInvokeChecker<ReplyVO>
     @Autowired
     private QuestionService questionService;
 
-    public boolean addReply(Integer operator, ReplyVO questionVO, Object[] args) {
+    public boolean addReply(Integer operator, ReplyVO questionVO,ReplyVO update, Object[] args) {
         System.out.println("addReply我正在check, QuestionVO:" + questionVO);
+        return true;
+    }
+
+    public boolean revokeReply(Integer operator, ReplyVO db,ReplyVO update, Object[] args) {
+        System.out.println("addReply我正在check, QuestionVO:" + db);
         return true;
     }
 

@@ -2,6 +2,7 @@ package com.chenxiaojie.spring.feedback.vo;
 
 public class QuestionVO {
 
+    private int questionId;
     private int replyId;
     private String content;
 
@@ -27,6 +28,14 @@ public class QuestionVO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
     @Override

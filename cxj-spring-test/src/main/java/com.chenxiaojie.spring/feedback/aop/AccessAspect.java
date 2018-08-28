@@ -52,7 +52,7 @@ public class AccessAspect implements ApplicationContextAware {
             }
 
             CanInvokeChecker checker = (CanInvokeChecker) applicationContext.getBean(checkerName);
-            if (checker.check(realMethod.getName(), (Integer) pjp.getArgs()[accessInterceptor.operatorParamIndex()], pjp.getArgs()[accessInterceptor.contextParamIndex()], pjp.getArgs())) {
+            if (checker.check(realMethod.getName(), (Integer) pjp.getArgs()[accessInterceptor.operatorParamIndex()], pjp.getArgs()[accessInterceptor.contextParamIndex()],null, pjp.getArgs())) {
                 return pjp.proceed();
             } else {
                 throw new RuntimeException("check fail");
@@ -60,18 +60,6 @@ public class AccessAspect implements ApplicationContextAware {
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
         }
-    }
-
-    private Integer toRealOperator(Object input) {
-        if (input instanceof Integer) {
-            return (Integer) input;
-        }
-
-        if (input.toString().equals("User")) {
-            return 0;
-        }
-
-        throw new IllegalArgumentException("非法入参");
     }
 
     private String getCheckerName(ProceedingJoinPoint pjp, AccessInterceptor accessInterceptor) {

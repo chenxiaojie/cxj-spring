@@ -23,14 +23,14 @@ public abstract class AbstractCanInvokeChecker<T> implements CanInvokeChecker {
     }
 
     @Override
-    public boolean check(String invokeMethodName, Integer operator, Object context, Object[] args) {
+    public boolean check(String invokeMethodName, Integer operator, Object dbObject, Object updateObject, Object[] args) {
         try {
-            Method checker = this.getClass().getDeclaredMethod(invokeMethodName, Integer.class, contextClass, args.getClass());
-            if (checker == null) {
+            Method checkMethod = this.getClass().getDeclaredMethod(invokeMethodName, Integer.class, contextClass,contextClass, args.getClass());
+            if (checkMethod == null) {
                 System.out.println("警告，没有找到校验方法，method : " + invokeMethodName);
                 return true;
             }
-            return (Boolean) checker.invoke(this, operator, safeToContextObject(context), args);
+            return (Boolean) checkMethod.invoke(this, operator, safeToContextObject(dbObject), updateObject, args);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
