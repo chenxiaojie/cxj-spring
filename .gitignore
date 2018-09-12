@@ -7,6 +7,7 @@ target
 .gradle
 bin/
 tmp/
+tomcat/
 node_modules/
 *.tmp
 *.bak
