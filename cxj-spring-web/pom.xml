@@ -19,13 +19,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring.version>5.0.5.RELEASE</spring.version>
+        <spring.version>5.0.8.RELEASE</spring.version>
         <groovy.version>2.3.7</groovy.version>
         <spock.version>1.0-groovy-2.3</spock.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
         <jackson.version>2.9.3</jackson.version>
-        <tomcat.version>8.5.23</tomcat.version>
+        <tomcat.version>8.5.32</tomcat.version>
     </properties>
 
     <dependencies>
@@ -93,6 +93,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
