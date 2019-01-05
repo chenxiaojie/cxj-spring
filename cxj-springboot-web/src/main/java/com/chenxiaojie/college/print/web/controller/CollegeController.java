@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by chenxiaojie on 16/9/16.
  */
@@ -97,5 +99,42 @@ public class CollegeController implements Customable {
     @Override
     public void custom() {
 
+    }
+
+
+    @RequestMapping(value = "/test1", method = RequestMethod.GET)
+    public ServiceResult test1(@RequestParam("aaa") List<Integer> aaa) {
+        System.out.println("test1");
+        return ServiceResult.success(aaa);
+    }
+
+    @RequestMapping(value = "/test2", method = RequestMethod.GET)
+    public ServiceResult test2(@RequestParam("aaa") List<String> aaa) {
+        System.out.println("test2");
+        return ServiceResult.success(aaa);
+    }
+
+    @RequestMapping(value = "/test3/{aaa}", method = RequestMethod.GET)
+    public ServiceResult test3(@PathVariable("aaa") List<Integer> aaa) {
+        System.out.println("test3");
+        return ServiceResult.success(aaa);
+    }
+
+    @RequestMapping(value = "/test4/{aaa}", method = RequestMethod.GET)
+    public ServiceResult test4(@PathVariable("aaa") List<String> aaa) {
+        System.out.println("test4");
+        return ServiceResult.success(aaa);
+    }
+
+    @RequestMapping(value = "/test5", method = RequestMethod.GET)
+    public ServiceResult test5(@RequestParam("aaa") String[] aaa) {
+        System.out.println("test5");
+        return ServiceResult.success(aaa);
+    }
+
+    @RequestMapping(value = "/test6", method = RequestMethod.GET)
+    public ServiceResult test6(@RequestParam("aaa") Integer[] aaa) {
+        System.out.println("test6");
+        return ServiceResult.success(aaa);
     }
 }

@@ -11,6 +11,7 @@ public class IndexController {
 
     @RequestMapping(value = {"", "/", "/index", "/index/"})
     public String index() {
+        System.out.println("123");
         return "index";
     }
 
