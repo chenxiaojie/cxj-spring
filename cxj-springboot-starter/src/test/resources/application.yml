@@ -1,3 +1,5 @@
 xiaojie:
   master: false
   url: 'jdbc:mysql://localhost:3306/GC_Print?useUnicode=true&amp;characterEncoding=UTF-8&amp;useAffectedRows=true'
+
+debug: false

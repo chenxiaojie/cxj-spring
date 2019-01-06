@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty
         (
                 prefix = "xiaojie",
-                name = "url",
+                name = "xiaojie",
                 matchIfMissing = true
         )
 public class XJAutoConfiguration {
