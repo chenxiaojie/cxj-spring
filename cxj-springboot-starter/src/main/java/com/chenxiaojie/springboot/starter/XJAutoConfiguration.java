@@ -32,4 +32,5 @@ public class XJAutoConfiguration {
         xjSqlSession.setUrl(xjProperties.getUrl());
         return xjSqlSession;
     }
+
 }

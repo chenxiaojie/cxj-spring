@@ -13,9 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MyTest.class)
+@SpringBootTest(classes = StarterTest.class)
 @ComponentScan(basePackages = "com.chenxiaojie.springboot.starter")
-public class MyTest implements ApplicationContextAware {
+public class StarterTest implements ApplicationContextAware {
 
     @Autowired
     private XJSqlSession sqlSession;
