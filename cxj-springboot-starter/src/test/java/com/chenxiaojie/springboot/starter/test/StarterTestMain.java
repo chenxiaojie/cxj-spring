@@ -2,11 +2,14 @@ package com.chenxiaojie.springboot.starter.test;
 
 import com.chenxiaojie.springboot.starter.sqlsession.XJSqlSession;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 
-@SpringBootApplication
+@Configuration
+@ComponentScan(basePackages = "com.chenxiaojie.springboot.starter")
+//@SpringBootConfiguration
 public class StarterTestMain {
 
     public static void main(String[] args) {
