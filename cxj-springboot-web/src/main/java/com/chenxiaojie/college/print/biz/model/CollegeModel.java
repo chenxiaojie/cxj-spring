@@ -16,5 +16,5 @@ public class CollegeModel {
     private int id;
     private String collegeName;
     private String collegeAddress;
-    private Date now = new Date();
+    private Date dt;
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -42,12 +43,13 @@ public class CollegeServiceImpl implements CollegeService {
             callableList.add(new Callable<CollegeEntity>() {
                 @Override
                 public CollegeEntity call() throws Exception {
-                    CollegeEntity collegeEntity = new CollegeEntity(finalI, "name_" + finalI, "address_" + finalI);
+                    CollegeEntity collegeEntity = new CollegeEntity(finalI, "name_" + finalI, "address_" + finalI, new Date());
                     collegeDAO.insert(collegeEntity);
 
-                    if (finalI > 3) {
-                        throw new RuntimeException("测试");
-                    }
+//                    if (finalI > 3) {
+//                        throw new RuntimeException("测试");
+//                    }
+                    CollegeTransfer.ModelToEntity.apply(collegeModel);
                     return collegeEntity;
                 }
             });

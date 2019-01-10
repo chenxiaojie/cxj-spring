@@ -10,6 +10,7 @@ CREATE TABLE `CP_College` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CollegeName` varchar(128) NOT NULL DEFAULT '',
   `CollegeAddress` varchar(512) NOT NULL DEFAULT '',
+  `dt` datetime(3) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `IX_Name` (`CollegeName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

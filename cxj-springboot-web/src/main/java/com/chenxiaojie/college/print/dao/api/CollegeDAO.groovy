@@ -3,13 +3,7 @@ package com.chenxiaojie.college.print.dao.api
 import com.chenxiaojie.college.print.dao.aop.DAOAnnotation
 import com.chenxiaojie.college.print.dao.driver.MybatisExtendedLanguageDriver
 import com.chenxiaojie.college.print.dao.entity.CollegeEntity
-import org.apache.ibatis.annotations.Delete
-import org.apache.ibatis.annotations.Insert
-import org.apache.ibatis.annotations.Lang
-import org.apache.ibatis.annotations.Param
-import org.apache.ibatis.annotations.Select
-import org.apache.ibatis.annotations.SelectKey
-import org.apache.ibatis.annotations.Update
+import org.apache.ibatis.annotations.*
 
 /**
  * Created by xiaojie.chen on 2015-03-04 15:39:38.
@@ -17,8 +11,8 @@ import org.apache.ibatis.annotations.Update
 interface CollegeDAO {
 
     @Insert("""
-            INSERT INTO CP_College(CollegeName, CollegeAddress)
-            VALUES(#{collegeName}, #{collegeAddress})
+            INSERT INTO CP_College(CollegeName, CollegeAddress, dt)
+            VALUES(#{collegeName}, #{collegeAddress}, #{dt})
             """)
     @SelectKey(before = false, resultType = Integer.class, keyProperty = "id", statement = "SELECT LAST_INSERT_ID() AS id")
     void insert(CollegeEntity college)
@@ -80,7 +74,7 @@ interface CollegeDAO {
 
     @DAOAnnotation
     @Select("""
-            SELECT ID, CollegeName, CollegeAddress
+            SELECT ID, CollegeName, CollegeAddress, dt
             FROM CP_College
             limit #{offset}, #{limit}
             """)

@@ -6,6 +6,8 @@ import com.chenxiaojie.college.print.dao.entity.CollegeEntity;
 import com.google.common.base.Function;
 import org.springframework.cglib.beans.BeanCopier;
 
+import java.util.Date;
+
 /**
  * Created by marco on 16/5/12.
  */
@@ -28,6 +30,7 @@ public class CollegeTransfer {
         public CollegeEntity safeApply(CollegeModel input) {
             CollegeEntity college = new CollegeEntity();
             modelToEntityCopier.copy(input, college, null);
+            college.setDt(new Date());
             return college;
         }
     };
