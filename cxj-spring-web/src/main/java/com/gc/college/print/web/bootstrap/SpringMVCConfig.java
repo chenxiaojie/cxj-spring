@@ -42,7 +42,7 @@ public class SpringMVCConfig implements WebMvcConfigurer {
         viewResolver.setSuffix(".ftl");
         viewResolver.setContentType("text/html; charset=UTF-8");
         viewResolver.setCache(true);
-        viewResolver.setRedirectContextRelative(false);
+        viewResolver.setRedirectHttp10Compatible(false);
         return viewResolver;
     }
 
