@@ -12,7 +12,10 @@ import org.springframework.context.ApplicationContext;
 public class SpringBootWebApplication {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(SpringBootWebApplication.class, args);
+        SpringApplication application = new SpringApplication(SpringBootWebApplication.class);
+        application.setAdditionalProfiles("test");
+        ApplicationContext ctx = application.run(args);
+//        ApplicationContext ctx = SpringApplication.run(SpringBootWebApplication.class, args);
         log.info("ctx started, ctx : " + ctx);
 
         try {

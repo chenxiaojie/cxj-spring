@@ -20,7 +20,7 @@ public class DBConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/GC_Print?useUnicode=true&amp;characterEncoding=UTF-8&amp;useAffectedRows=true");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/GC_Print?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true");
         dataSource.setUsername("root");
         dataSource.setPassword("qwe888888");
         return dataSource;

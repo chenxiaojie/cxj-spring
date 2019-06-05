@@ -1,0 +1,36 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+
+logging:
+  config: classpath:log4j2.xml
+
+management:
+  server:
+    name: 陈孝杰test
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/GC_Print?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&useSSL=false
+    username: root
+    password: qwe888888
+
+  transaction:
+    rollback-on-commit-failure: false
+
+  freemarker:
+    template-loader-path: classpath:templates/pages/
+    suffix: .ftl
+    content-type: text/html; charset=UTF-8
+    cache: true
+    charset: UTF-8
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20971520

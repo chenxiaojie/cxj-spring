@@ -6,10 +6,14 @@ server:
 logging:
   config: classpath:log4j2.xml
 
+management:
+  server:
+    name: 陈孝杰prod
+
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/GC_Print?useUnicode=true&amp;characterEncoding=UTF-8&amp;useAffectedRows=true
+    url: jdbc:mysql://localhost:3306/GC_Print?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&useSSL=false
     username: root
     password: qwe888888
 

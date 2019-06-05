@@ -9,6 +9,7 @@ import com.chenxiaojie.college.print.web.aop.iface.Customable;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,12 @@ public class CollegeController implements Customable {
     @Autowired
     private CollegeService collegeService;
 
+    @Value("${management.server.name}")
+    private String config;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ServiceResult query(@PathVariable(value = "id") int id) {
+        log.info("${management.server.name} : " + config);
         return ServiceResult.success(collegeService.queryById(id));
     }
 
