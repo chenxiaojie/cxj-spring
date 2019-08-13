@@ -19,9 +19,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring.version>5.0.8.RELEASE</spring.version>
-        <groovy.version>2.3.7</groovy.version>
-        <spock.version>1.0-groovy-2.3</spock.version>
+        <spring.version>5.0.11.RELEASE</spring.version>
+        <groovy.version>2.5.6</groovy.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
         <jackson.version>2.9.6</jackson.version>
@@ -123,20 +122,8 @@
         </dependency>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
+            <artifactId>groovy</artifactId>
             <version>${groovy.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-core</artifactId>
-            <version>${spock.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-spring</artifactId>
-            <version>${spock.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -151,7 +138,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.29</version>
+            <version>1.2.58</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -201,7 +188,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.16</version>
+            <version>1.18.4</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -304,8 +291,8 @@
                 <dependencies>
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <version>2.3.7</version>
+                        <artifactId>groovy</artifactId>
+                        <version>${groovy.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

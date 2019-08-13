@@ -2,6 +2,7 @@ package com.gc.college.print.web.bootstrap;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -30,7 +31,7 @@ public class DBConfig {
     public Boolean dataSourceIsSame() {
         DataSource dataSource1 = this.dataSource();
         DataSource dataSource2 = this.dataSource();
-        log.info("dataSource1 == dataSource2 : " + (dataSource1 == dataSource2));
+        log.info("MapperScannerConfigurer not static will make dataSource1 == dataSource2 == false : " + (dataSource1 == dataSource2));
         return dataSource1 == dataSource2;
     }
 
@@ -46,6 +47,14 @@ public class DBConfig {
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
         dataSourceTransactionManager.setDataSource(this.dataSource());
         return dataSourceTransactionManager;
+    }
+
+    @Bean
+    public static MapperScannerConfigurer mapperScannerConfigurer() {
+        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+        mapperScannerConfigurer.setBasePackage("com.gc.college.print.dao.api");
+        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
+        return mapperScannerConfigurer;
     }
 
 }
