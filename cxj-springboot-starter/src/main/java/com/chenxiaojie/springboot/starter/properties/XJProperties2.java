@@ -3,7 +3,7 @@ package com.chenxiaojie.springboot.starter.properties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class XJProperties2 {
 
     @Value("${xiaojie.url}")
