@@ -1,5 +1,7 @@
 package com.chenxiaojie.college.print.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 
 /**
@@ -7,6 +9,7 @@ import lombok.Getter;
  * 公用的请求json结果类
  */
 @Getter
+@ApiModel(value = "通用返回实体")
 public class ServiceResult<T> {
 
     public static final int INTERNAL_ERROR = 500;
@@ -15,14 +18,19 @@ public class ServiceResult<T> {
     /**
      * 返回码,非200则出错
      */
+    @ApiModelProperty(value = "状态，200=成功，500=失败", position = 1)
     private int code = SUCCESS;
+
     /**
      * 提示信息(大部分是报错信息,也可以是提示信息)
      */
+    @ApiModelProperty(value = "报错信息", position = 2)
     private String msg;
+
     /**
      * 返回数据
      */
+    @ApiModelProperty(value = "返回数据实体", position = 3)
     private T data;
 
     private ServiceResult(int code, String msg, T data) {

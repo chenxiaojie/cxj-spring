@@ -6,6 +6,9 @@ server:
 logging:
   config: classpath:log4j2.xml
 
+swagger:
+  enabled: true
+
 management:
   server:
     name: 陈孝杰test
