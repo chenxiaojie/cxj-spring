@@ -20,8 +20,6 @@ spring:
     username: root
     password: qwe888888
 
-  transaction:
-    rollback-on-commit-failure: false
 
   freemarker:
     template-loader-path: classpath:templates/pages/

@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 
 @Slf4j
 @SpringBootApplication
+//@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+//@EnableTransactionManagement
 @MapperScan(basePackages = "com.chenxiaojie.college.print.dao.api")
 public class SpringBootWebApplication {
 

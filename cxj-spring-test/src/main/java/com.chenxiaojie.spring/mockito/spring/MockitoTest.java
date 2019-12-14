@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ComponentScan(basePackages = "com.chenxiaojie.spring.mockito.spring")
 public class MockitoTest {
 
-    @Spy
+//    @Spy
     @InjectMocks
     @Autowired
     private PrivateClass privateClass;
