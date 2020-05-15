@@ -23,7 +23,7 @@
         <groovy.version>2.5.6</groovy.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
-        <jackson.version>2.9.6</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <tomcat.version>8.5.32</tomcat.version>
     </properties>
 
