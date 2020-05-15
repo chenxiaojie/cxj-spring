@@ -24,7 +24,7 @@ public class PrivateClass {
         String result = privateMethod(hello);
         result = "我是公开的陈孝杰, hello : " + result;
         System.out.println(result);
-        System.out.println("DependClass : " + dependClass.sayHello(hello));
+        System.out.println("PrivateClass`s DependClass : " + dependClass.sayHello(hello));
         return result;
     }
 

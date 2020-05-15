@@ -46,9 +46,9 @@ public class CollegeServiceImpl implements CollegeService {
                     CollegeEntity collegeEntity = new CollegeEntity(finalI, "name_" + finalI, "address_" + finalI, new Date());
                     collegeDAO.insert(collegeEntity);
 
-//                    if (finalI > 3) {
-//                        throw new RuntimeException("测试");
-//                    }
+                    if (finalI > 3) {
+                        throw new RuntimeException("测试");
+                    }
                     CollegeTransfer.ModelToEntity.apply(collegeModel);
                     return collegeEntity;
                 }

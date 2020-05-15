@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
+import org.mockito.Spy;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -27,13 +28,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @PowerMockIgnore({"javax.management.*"})
 public class MockitoTest2 {
 
+    @Spy
     @Autowired
     private PrivateClass privateClass;
 
-    @Before
-    public void before() {
-        privateClass = PowerMockito.spy(privateClass);
-    }
+//    @Before
+//    public void before() {
+//        privateClass = PowerMockito.spy(privateClass);
+//    }
 
     @Test
     public void test1() throws Exception {

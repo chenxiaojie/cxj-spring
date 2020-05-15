@@ -27,10 +27,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @PowerMockIgnore({"javax.management.*"})
 public class MockitoTest3 {
 
+    /**
+     * spy 可以改变方法内部间接调用与依赖类的的方法调用的返回值, 直接调用该类想改变返回值只能使用mock, 两者不能共存
+     */
     @Spy
     @InjectMocks
     @Autowired
     private PrivateClass privateClass;
+
+    @InjectMocks
+    @Autowired
+    private PrivateClass privateClass2;
 
     @Mock
     @Autowired
@@ -43,15 +50,22 @@ public class MockitoTest3 {
 
     @Test
     public void test1() throws Exception {
-        PowerMockito.when(dependClass.sayHello(BDDMockito.anyString())).thenReturn("depend say hello mock");
+//        PowerMockito.when(dependClass.sayHello(BDDMockito.anyString())).thenReturn("depend say hello mock");
+        PowerMockito.when(dependClass, "sayHello", BDDMockito.anyString()).thenReturn("depend say hello mock");
         PowerMockito.when(privateClass, "privateMethod", BDDMockito.anyString()).thenReturn("private method mock");
         System.out.println("mocked");
 
-        //改mock无效
-        PowerMockito.when(privateClass.publicMethod(BDDMockito.anyString())).thenReturn("public method mock");
-        //PowerMockito.when(privateClass, "publicMethod", BDDMockito.anyString()).thenReturn("public method mock");
+        //该mock无效, 说明一个方法不可以被spy 又 被mock.
+        //PowerMockito.when(privateClass.publicMethod(BDDMockito.anyString())).thenReturn("public method mock");
+        PowerMockito.when(privateClass, "publicMethod", BDDMockito.anyString()).thenReturn("public method mock");
         System.out.println("mocked2");
         String result = privateClass.publicMethod("~~test~~");
+        System.out.println("result : " + result);
+
+        System.out.println("mocked3");
+        PowerMockito.when(privateClass2, "publicMethod", BDDMockito.anyString()).thenReturn("public method mock");
+        System.out.println("mocked4");
+        result = privateClass2.publicMethod("~~test~~");
         System.out.println("result : " + result);
     }
 }

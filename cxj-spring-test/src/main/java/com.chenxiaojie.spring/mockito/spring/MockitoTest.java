@@ -22,7 +22,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ComponentScan(basePackages = "com.chenxiaojie.spring.mockito.spring")
 public class MockitoTest {
 
-//    @Spy
     @InjectMocks
     @Autowired
     private PrivateClass privateClass;
@@ -40,8 +39,8 @@ public class MockitoTest {
     public void test1() throws Exception {
         PowerMockito.when(dependClass, "sayHello", BDDMockito.anyString()).thenReturn("dependClass mock");
 
-        //该mock无效
-        PowerMockito.when(privateClass, "publicMethod", BDDMockito.anyString()).thenReturn("privateClass mock");
+        //该mock无效, 合理, 因为没有打@Mock 注解
+        //PowerMockito.when(privateClass, "publicMethod", BDDMockito.anyString()).thenReturn("privateClass mock");
 
         System.out.println("mocked");
 

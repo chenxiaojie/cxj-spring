@@ -1,0 +1,1 @@
+org.springframework.boot.SpringApplicationRunListener=com.chenxiaojie.college.print.XiaojieApplicationRunListener
