@@ -3,8 +3,7 @@ package com.chenxiaojie.spring.mockito.spring;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -26,19 +25,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes = Config.class)
 @PrepareForTest({PrivateClass.class, DependClass.class})
 @PowerMockIgnore({"javax.management.*"})
-public class MockitoTest2 {
+public class MockitoTest4 {
+
+    @Mock
+    @Autowired
+    private DependClass dependClass;
 
     @Spy
+    @InjectMocks
     @Autowired
     private PrivateClass privateClass;
 
-//    @Before
-//    public void before() {
-//        privateClass = PowerMockito.spy(privateClass);
-//    }
+    @Before
+    public void before() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void test1() throws Exception {
+        PowerMockito.when(dependClass.sayHello(BDDMockito.anyString())).thenReturn("depend say hello mock test1");
         PowerMockito.when(privateClass, "privateMethod", BDDMockito.anyString()).thenReturn("private method mock test1");
 
         System.out.println("start mocked");
@@ -46,17 +51,4 @@ public class MockitoTest2 {
         System.out.println("final result : " + result);
     }
 
-    @Test
-    public void test2() throws Exception {
-        //同类见:MockitoTest4
-        DependClass dependClass = PowerMockito.mock(DependClass.class);
-        PowerMockito.when(dependClass.sayHello(BDDMockito.anyString())).thenReturn("depend say hello mock test2");
-        privateClass.setDependClass(dependClass);
-
-        PowerMockito.when(privateClass, "privateMethod", BDDMockito.anyString()).thenReturn("private method mock test2");
-
-        System.out.println("start mocked");
-        String result = privateClass.publicMethod("~~test~~");
-        System.out.println("final result : " + result);
-    }
 }

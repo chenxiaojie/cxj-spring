@@ -1,4 +1,4 @@
-package com.chenxiaojie.spring.mockito.spring;
+package com.chenxiaojie.spring.mockito.nopower;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class PrivateClass {
         return result;
     }
 
-    private String privateMethod(String hello) {
+    public String privateMethod(String hello) {
         String result = "PrivateClass.privateMethod : " + hello;
         System.out.println("call: " + result);
         return result;

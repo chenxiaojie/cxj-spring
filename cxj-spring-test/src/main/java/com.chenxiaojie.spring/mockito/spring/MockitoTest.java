@@ -37,15 +37,14 @@ public class MockitoTest {
 
     @Test
     public void test1() throws Exception {
-        PowerMockito.when(dependClass, "sayHello", BDDMockito.anyString()).thenReturn("dependClass mock");
+        PowerMockito.when(dependClass, "sayHello", BDDMockito.anyString()).thenReturn("dependClass mock test1");
 
         //该mock无效, 合理, 因为没有打@Mock 注解
         //PowerMockito.when(privateClass, "publicMethod", BDDMockito.anyString()).thenReturn("privateClass mock");
 
-        System.out.println("mocked");
-
-        String result = privateClass.publicMethod("~~test~~");
-        System.out.println("result : " + result);
+        System.out.println("start mocked");
+        String result = privateClass.publicMethod("~~test1~~");
+        System.out.println("final result : " + result);
     }
 
 }

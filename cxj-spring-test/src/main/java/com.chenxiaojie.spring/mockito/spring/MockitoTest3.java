@@ -53,19 +53,21 @@ public class MockitoTest3 {
 //        PowerMockito.when(dependClass.sayHello(BDDMockito.anyString())).thenReturn("depend say hello mock");
         PowerMockito.when(dependClass, "sayHello", BDDMockito.anyString()).thenReturn("depend say hello mock");
         PowerMockito.when(privateClass, "privateMethod", BDDMockito.anyString()).thenReturn("private method mock");
-        System.out.println("mocked");
+        System.out.println("start mocked");
 
         //该mock无效, 说明一个方法不可以被spy 又 被mock.
         //PowerMockito.when(privateClass.publicMethod(BDDMockito.anyString())).thenReturn("public method mock");
-        PowerMockito.when(privateClass, "publicMethod", BDDMockito.anyString()).thenReturn("public method mock");
-        System.out.println("mocked2");
-        String result = privateClass.publicMethod("~~test~~");
-        System.out.println("result : " + result);
+        //PowerMockito.when(privateClass, "publicMethod", BDDMockito.anyString()).thenReturn("public method mock");
 
-        System.out.println("mocked3");
+        System.out.println("start mocked2");
+        String result = privateClass.publicMethod("~~test~~");
+        System.out.println("result2 : " + result);
+
+        System.out.println("start mocked3");
         PowerMockito.when(privateClass2, "publicMethod", BDDMockito.anyString()).thenReturn("public method mock");
-        System.out.println("mocked4");
+
+        System.out.println("start mocked4");
         result = privateClass2.publicMethod("~~test~~");
-        System.out.println("result : " + result);
+        System.out.println("final result : " + result);
     }
 }
