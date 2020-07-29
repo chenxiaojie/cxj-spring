@@ -9,5 +9,6 @@ public class BootstrapMain {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ConfigurationBean.class);
         System.out.println(applicationContext);
+        applicationContext.close();
     }
 }
