@@ -44,8 +44,8 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
-            <artifactId>spring-boot-starter-jetty</artifactId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+<!--            <artifactId>spring-boot-starter-jetty</artifactId>-->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>

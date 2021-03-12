@@ -44,10 +44,10 @@ public class CollegeServiceImpl implements CollegeService {
                 @Override
                 public CollegeEntity call() throws Exception {
                     CollegeEntity collegeEntity = new CollegeEntity(finalI, "name_" + finalI, "address_" + finalI);
-//                    collegeDAO.insert(collegeEntity);
+                    collegeDAO.insert(collegeEntity);
 
-//                    if (finalI > 5) {
-//                        throw new RuntimeException("测试");
+//                    if (finalI > 3) {
+//                        throw new RuntimeException("测试异常，请忽略！");
 //                    }
                     return collegeEntity;
                 }
