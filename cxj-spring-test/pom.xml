@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring.version>5.0.11.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
         <groovy.version>2.5.6</groovy.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
