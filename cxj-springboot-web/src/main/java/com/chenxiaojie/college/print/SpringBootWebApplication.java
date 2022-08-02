@@ -7,11 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Slf4j
 @ServletComponentScan
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-//@EnableTransactionManagement(proxyTargetClass = true)
+@EnableTransactionManagement(proxyTargetClass = true)
 @MapperScan(basePackages = "com.chenxiaojie.college.print.dao.api")
 public class SpringBootWebApplication {
 

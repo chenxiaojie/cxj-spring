@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,7 @@ public class CollegeServiceImpl implements CollegeService {
     @Override
     @Transactional
     public CollegeModel add(CollegeModel collegeModel) {
+//        TransactionSynchronizationManager.clear();
         CollegeEntity college = CollegeTransfer.ModelToEntity.apply(collegeModel);
         collegeDAO.insert(college);
 
@@ -43,12 +45,11 @@ public class CollegeServiceImpl implements CollegeService {
             callableList.add(new Callable<CollegeEntity>() {
                 @Override
                 public CollegeEntity call() throws Exception {
-                    CollegeEntity collegeEntity = new CollegeEntity(finalI, "name_" + finalI, "address_" + finalI, new Date());
+                    if (finalI > 3) {
+                        throw new RuntimeException("测试异常,请忽略");
+                    }
+                    CollegeEntity collegeEntity = new CollegeEntity(finalI, college.getCollegeName() + "_" + finalI, college.getCollegeAddress() + "_" + finalI, new Date());
                     collegeDAO.insert(collegeEntity);
-
-//                    if (finalI > 3) {
-//                        throw new RuntimeException("测试异常,请忽略");
-//                    }
                     return collegeEntity;
                 }
             });
