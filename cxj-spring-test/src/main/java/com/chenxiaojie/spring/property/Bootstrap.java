@@ -1,5 +1,6 @@
-package com.chenxiaojie.spring.property.placeholder;
+package com.chenxiaojie.spring.property;
 
+import com.chenxiaojie.spring.property.placeholder.A;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeansException;
